@@ -21,10 +21,18 @@ export default async function handler(req, res) {
     if (feed.ok) {
       const data = await feed.json();
       const version = String(data.version || '').trim();
-      // Guard the version shape: it is interpolated into a URL, and a feed
-      // that ever returned something unexpected must fall back rather than
-      // send visitors to a made-up address.
-      if (/^\d+\.\d+\.\d+$/.test(version)) {
+      const installer = String(data.installer_url || '').trim();
+      // Prefer the installer hosted beside the feed. github.com does not
+      // serve release assets itself — it redirects to
+      // release-assets.githubusercontent.com, a separate domain some ISPs and
+      // office firewalls block. A shop on such a network could reach neither
+      // the in-app update nor this button, so both routes out were shut.
+      if (installer.startsWith('https://xawpxbhglzhaibmcpwho.supabase.co/')) {
+        target = installer;
+      } else if (/^\d+\.\d+\.\d+$/.test(version)) {
+        // Older feed with no installer_url yet: the GitHub asset still works
+        // for everyone whose network does not block that domain.
+        // Guard the version shape, since it is interpolated into a URL.
         target =
           `https://github.com/billcatapp/billcatwin/releases/download/v${version}` +
           `/BillCat-Setup-${version}.exe`;
