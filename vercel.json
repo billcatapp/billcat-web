@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/downloads/BillCat-Setup.exe",
+      "destination": "/api/download-windows",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/invoices/:slug",
