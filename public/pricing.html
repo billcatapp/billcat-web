@@ -167,43 +167,6 @@ All Features Included.</h1>
 </section>
 <!-- Client-side Interactive Logic -->
 <script>
-    function switchBilling(period) {
-      const annualBtn = document.getElementById('billing-annual-btn');
-      const monthlyBtn = document.getElementById('billing-monthly-btn');
-
-      const priceStarter = document.getElementById('price-starter');
-      const priceCommercial = document.getElementById('price-commercial');
-      const priceEnterprise = document.getElementById('price-enterprise');
-
-      const cycleStarter = document.getElementById('cycle-starter');
-      const cycleCommercial = document.getElementById('cycle-commercial');
-      const cycleEnterprise = document.getElementById('cycle-enterprise');
-
-      if (period === 'annual') {
-        annualBtn.className = "flex items-center gap-space-2xs px-space-lg py-2.5 rounded-full bg-surface-canvas text-text-primary shadow-sm font-body-md text-body-md font-semibold transition-all duration-200";
-        monthlyBtn.className = "flex items-center gap-space-2xs px-space-lg py-2.5 rounded-full text-text-secondary hover:text-text-primary font-body-md text-body-md font-medium transition-all duration-200";
-
-        priceStarter.textContent = '2,499';
-        priceCommercial.textContent = '5,999';
-        priceEnterprise.textContent = '9,999';
-
-        cycleStarter.textContent = '/ year';
-        cycleCommercial.textContent = '/ year';
-        cycleEnterprise.textContent = '/ year';
-      } else {
-        monthlyBtn.className = "flex items-center gap-space-2xs px-space-lg py-2.5 rounded-full bg-surface-canvas text-text-primary shadow-sm font-body-md text-body-md font-semibold transition-all duration-200";
-        annualBtn.className = "flex items-center gap-space-2xs px-space-lg py-2.5 rounded-full text-text-secondary hover:text-text-primary font-body-md text-body-md font-medium transition-all duration-200";
-
-        priceStarter.textContent = '249';
-        priceCommercial.textContent = '500';
-        priceEnterprise.textContent = '999';
-
-        cycleStarter.textContent = '/ month';
-        cycleCommercial.textContent = '/ month';
-        cycleEnterprise.textContent = '/ month';
-      }
-    }
-
     function toggleFaq(id) {
       const body = document.getElementById('faq-body-' + id);
       const icon = document.getElementById('faq-icon-' + id);
