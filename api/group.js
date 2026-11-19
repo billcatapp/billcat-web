@@ -63,7 +63,11 @@ function page({ title, body, href, cta }) {
 
 export default function handler(req, res) {
   const raw = Array.isArray(req.query?.code) ? req.query.code[0] : req.query?.code;
-  const code = String(raw ?? '').trim();
+  // A dynamic URL button APPENDS its parameter to the base URL. A template
+  // whose base wrongly ends in the placeholder yields /g/{{1}}<code>, so the
+  // placeholder is stripped rather than failing the bill's button. Fix the
+  // template too — this only rescues messages already sent.
+  const code = String(raw ?? '').trim().replace(/^\{\{\s*\d+\s*\}\}/, '');
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   // The site sends X-Frame-Options: DENY on every path. In-app browsers can
