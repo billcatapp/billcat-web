@@ -1,22 +1,16 @@
 {
   "redirects": [
     {
-      "source": "/g/none",
-      "destination": "https://www.billcat.in/",
-      "permanent": false
-    },
-    {
-      "source": "/g/:code",
-      "destination": "https://chat.whatsapp.com/:code",
-      "permanent": false
-    },
-    {
       "source": "/downloads/BillCat-Setup.exe",
       "destination": "/api/download-windows",
       "permanent": false
     }
   ],
   "rewrites": [
+    {
+      "source": "/g/:code",
+      "destination": "/api/group?code=:code"
+    },
     {
       "source": "/invoices/:slug",
       "destination": "/api/invoice-view?slug=:slug"
